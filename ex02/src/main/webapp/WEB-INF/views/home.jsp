@@ -8,10 +8,10 @@
 </head>
 <body>
 <h1>
-	안녕 세계~!
+	안녕 세계~! 반가워 세계~!
 </h1>
 
-<P>  서버의 시간은 ${serverTime}. </P>
+<P>  서버의 시간은 ${serverTime} 입니다. </P>
 <a href="/board/list">게시판 바로가기</a>
 </body>
 </html>
