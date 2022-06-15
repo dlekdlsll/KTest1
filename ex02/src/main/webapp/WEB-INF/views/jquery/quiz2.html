@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <script src="http://code.jquery.com/jquery-1.10.1.js"></script>
+	<script>
+        $(document).ready(function () {
+            $("#n").click(function () {
+            	$("#transform").text("변신완료");
+            });
+            $("#s").click(function () {
+            	$("#transform").html("<h2>변신완료</h2>");
+            });
+        });
+    </script>
+</head>
+<body>
+<p id="transform">난 변신합니다.</p>
+<span id="n">변신1</span>&nbsp;<span id="s">변신2</span>
+</body>
+</html>
