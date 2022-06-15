@@ -46,7 +46,7 @@
                             	<a href="/board/list?pageNum=${pageMaker.startPage-1 }">&lt;&lt;</a>
                             </c:if>
                         	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-                        		&nbsp;&nbsp; <a href="/board/list?pageNum=${num }&amount=${pageMaker.cri.amount}">${num }</a>&nbsp;&nbsp;
+                        		&nbsp;<a href="/board/list?pageNum=${num }&amount=${pageMaker.cri.amount}">${num }</a>&nbsp;&nbsp;&nbsp;
                         	</c:forEach>
                         	<c:if test="${pageMaker.next }">
                             	<a href="/board/list?pageNum=${pageMaker.endPage+1 }">&gt;&gt;</a>
