@@ -28,8 +28,8 @@
                            	<label>작성자</label>
                            	<input class="form-control" type="text" name="writer" value="${board.writer}" readonly><br>
                            	
-                           	<button class="btn btn-success" onclick="location.href='/board/modify?bno=${board.bno}'">변경하기</button>
-                           	<button class="btn btn-success" onclick="location.href='/board/list'">목록보기</button>
+                           	<button class="btn btn-success" onclick="location.href='/board/modify?bno=${board.bno}&pageNum=${criteria.pageNum}&amount=${criteria.amount }'">변경하기</button>
+                           	<button class="btn btn-success" onclick="location.href='/board/list?pageNum=${criteria.pageNum}&amount=${criteria.amount }'">목록보기</button>
                         </div>
                         <!-- /.panel-body -->
                     </div>
