@@ -6,4 +6,6 @@ import lombok.Data;
 public class CountVO {
 	private String writer;
 	private int count;
+	private Long contentNum;
+	private Long rn;
 }

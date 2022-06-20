@@ -78,4 +78,10 @@ public class BoardController {
 		log.info("count 요청");
 		model.addAttribute("count",service.count());
 	}
+	
+	// 랭킹
+	@GetMapping("/rank")
+	public void rank(Criteria cri, Model model) {
+		model.addAttribute("rank",service.rank());
+	}
 }

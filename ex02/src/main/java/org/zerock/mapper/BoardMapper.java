@@ -31,6 +31,9 @@ public interface BoardMapper {
 	
 	// 임의추가 - 글 목록 개수
 	public Long count();
+
+	// 임의추가 - 랭킹
+	public List<CountVO> rank();
 	
 	// 임의추가 - 유저 작성글 개수
 //	public Long count1(String user);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.CountVO;
 import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
 
@@ -44,6 +45,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Long count() {
 		return mapper.count();
+	}
+
+	@Override
+	public List<CountVO> rank() {
+		return mapper.rank();
 	}
 
 }

@@ -61,4 +61,10 @@
 		select DISTINCT title, writer from tbl_board
 	</select>
 	
+	<select id="rank" resultType="org.zerock.domain.CountVO">
+		<![CDATA[
+			select * from (select ROWNUM rn, writer, contentNum from(select writer, count(*) contentNum from tbl_board GROUP BY writer ORDER BY contentNum desc)) where rn <= 3
+		]]>
+	</select>
+	
 </mapper>

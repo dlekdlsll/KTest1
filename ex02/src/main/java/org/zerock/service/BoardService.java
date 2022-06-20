@@ -3,6 +3,7 @@ package org.zerock.service;
 import java.util.List;
 
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.CountVO;
 import org.zerock.domain.Criteria;
 
 public interface BoardService {
@@ -23,4 +24,7 @@ public interface BoardService {
 	
 	// 글 갯수 보기
 	public Long count();
+	
+	// 작성자 랭킹 보기
+	public List<CountVO> rank();
 }
