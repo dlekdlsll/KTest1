@@ -7,34 +7,39 @@
 	]]>
 	</select>
 	
+	<sql id="criteria">
+    	<trim prefixOverrides="OR">
+    		<foreach item='type' collection="typeArr">
+    			<trim prefix="OR">
+	    			<choose>
+	    				<when test='type=="T"'>
+	    					title like'%'||#{keyword}||'%'
+	    				</when>
+	    				<when test='type=="C"'>
+	    					content like'%'||#{keyword}||'%'
+	    				</when>
+	    				<when test='type=="W"'>
+	    					writer like'%'||#{keyword}||'%'
+	    				</when>
+	    			</choose>
+    			</trim>
+    		</foreach>
+    	</trim>
+    </sql>
+	
+	
 	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
-		select bno, title, writer, regdate, updatedate 
-		from(select rownum rn, bno, title, writer, regdate, updatedate 
-    		from(select * from tbl_board 
-	    	<where>
-		    	<trim prefixOverrides="OR">
-		    		<foreach item='type' collection="typeArr">
-		    			<trim prefix="OR">
-			    			<choose>
-			    				<when test='type=="T"'>
-			    					title like'%'||#{keyword}||'%'
-			    				</when>
-			    				<when test='type=="C"'>
-			    					content like'%'||#{keyword}||'%'
-			    				</when>
-			    				<when test='type=="W"'>
-			    					writer like'%'||#{keyword}||'%'
-			    				</when>
-			    			</choose>
-		    			</trim>
-		    		</foreach>
-		    	</trim>
-	    	</where>
-    		<![CDATA[ 
-    		order by bno desc) 
-    		where rownum <= (#{pageNum} * #{amount}) )
-		where rn > ((#{pageNum}-1) * #{amount}) 
-		]]>
+			select bno, title, writer, regdate, updatedate 
+			from(select rownum rn, bno, title, writer, regdate, updatedate 
+	    		from(select * from tbl_board 
+		    	<where>
+			    	<include refid="criteria"></include>
+		    	</where>
+	    	<![CDATA[ 
+	    		order by bno desc) 
+	    		where rownum <= (#{pageNum} * #{amount}) )
+			where rn > ((#{pageNum}-1) * #{amount}) 
+			]]>
 	</select>
 	
 	<insert id="insert">
@@ -68,24 +73,8 @@
 	<select id="count" resultType="long">
 		select count(*) from tbl_board
 		<where>
-		    	<trim prefixOverrides="OR">
-		    		<foreach item='type' collection="typeArr">
-		    			<trim prefix="OR">
-			    			<choose>
-			    				<when test='type=="T"'>
-			    					title like'%'||#{keyword}||'%'
-			    				</when>
-			    				<when test='type=="C"'>
-			    					content like'%'||#{keyword}||'%'
-			    				</when>
-			    				<when test='type=="W"'>
-			    					writer like'%'||#{keyword}||'%'
-			    				</when>
-			    			</choose>
-		    			</trim>
-		    		</foreach>
-		    	</trim>
-	    	</where>
+	    	<include refid="criteria"></include>
+    	</where>
 	</select>
 	
 	<select id="description" resultType="org.zerock.domain.BoardVO">

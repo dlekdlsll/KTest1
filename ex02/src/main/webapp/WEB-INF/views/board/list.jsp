@@ -46,11 +46,29 @@
 	                                </c:forEach>
                                 </tbody>
                             </table>
+                            
+                            <form action="/board/list" method="get">
+	                            <select name='type'>
+                            		<option>검색조건</option>
+	                                <option ${pageMaker.cri.type=="T" ? selected :""} value="T">제목</option>
+	                                <option ${pageMaker.cri.type=="C" ? selected :""} value="C">내용</option>
+	                                <option ${pageMaker.cri.type=="W" ? selected :""} value="W">작성자</option>
+	                                <option ${pageMaker.cri.type=="TC" ? selected :""} value="TC">제목 or 내용</option>
+	                                <option ${pageMaker.cri.type=="TW" ? selected :""} value="TW">제목 or 작성자</option>
+	                                <option ${pageMaker.cri.type=="CW" ? selected :""} value="CW">내용 or 작성자</option>
+	                                <option ${pageMaker.cri.type=="TCW" ? selected :""} value="TCW">제목 or 내용 or 작성자</option>
+	                            </select>
+	                            <input type="text" name='keyword' value="${pageMaker.cri.keyword }"/>
+	                            <input type="hidden" name='pageNum' value='${pageMaker.cri.pageNum }'/>
+	                            <input type="hidden" name='amount' value='${pageMaker.cri.amount }'/>
+	                            <input type="submit" value="검색"/>
+                            </form>
+                            
                             <c:if test="${pageMaker.prev }">
                             	<a href="/board/list?pageNum=${pageMaker.startPage-1 }">&lt;&lt;</a>
                             </c:if>
                         	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-                        		&nbsp;<a href="/board/list?pageNum=${num }&amount=${pageMaker.cri.amount}">
+                        		&nbsp;<a href="/board/list?pageNum=${num }&amount=${pageMaker.cri.amount}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}">
                         		
                         		<c:if test="${pageMaker.cri.pageNum == num }" >
                         		<%--현재 페이지를 ${param.pageNum } or ${pageMaker.cri.pageNum } or {criteria.pageNum}> --%>
