@@ -30,7 +30,7 @@ public interface BoardMapper {
 	public int update(BoardVO vo);
 	
 	// 임의추가 - 글 목록 개수
-	public Long count();
+	public Long count(Criteria cri);
 
 	// 임의추가 - 랭킹
 	public List<CountVO> rank();
@@ -42,4 +42,8 @@ public interface BoardMapper {
 	public List<CountVO> quiz1();
 	
 	public List<BoardVO> quiz2();
+
+	public Long countDistinct();
+	
+	public List<BoardVO> description();
 }

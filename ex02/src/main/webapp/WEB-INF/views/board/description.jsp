@@ -15,28 +15,40 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            	랭킹보기
+                            	통계
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>순위</th>
-                                        <th>작성자</th>
+                                        <th>중복된 글 개수</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<tr class="odd gradeX">
+                                        <td>${countDistinct }</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <table width="100%" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>작성일</th>
                                         <th>글 개수</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-	                                <c:forEach var="rankList" items="${rank }">
+	                                <c:forEach var="dateList" items="${description }">
 	                                	<tr class="odd gradeX">
-	                                		<td><c:out value="${rankList.rn }"></c:out></td>
-	                                        <td><c:out value="${rankList.writer }"></c:out></td>	<!-- c:out으로 찍으면 input으로 스크립트가 들어와도 실행안함 -->
-	                                        <td><c:out value="${rankList.contentNum }"></c:out></td>
+	                                        <td><c:out value="${dateList.regdate }"></c:out></td>	<!-- c:out으로 찍으면 input으로 스크립트가 들어와도 실행안함 -->
+	                                        <td><c:out value="${dateList.content }"></c:out></td>
 	                                    </tr>
 	                                </c:forEach>
                                 </tbody>
                             </table>
+                            
                             <button class="btn btn-success" onclick="location.href='/board/list?pageNum=${criteria.pageNum}&amount=${criteria.amount }'">목록보기</button>
                         </div>
                         <!-- /.panel-body -->

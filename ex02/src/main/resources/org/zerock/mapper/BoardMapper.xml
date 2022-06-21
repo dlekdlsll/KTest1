@@ -8,10 +8,30 @@
 	</select>
 	
 	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
-		<![CDATA[ 
 		select bno, title, writer, regdate, updatedate 
 		from(select rownum rn, bno, title, writer, regdate, updatedate 
-    		from(select * from tbl_board order by bno desc) 
+    		from(select * from tbl_board 
+	    	<where>
+		    	<trim prefixOverrides="OR">
+		    		<foreach item='type' collection="typeArr">
+		    			<trim prefix="OR">
+			    			<choose>
+			    				<when test='type=="T"'>
+			    					title like'%'||#{keyword}||'%'
+			    				</when>
+			    				<when test='type=="C"'>
+			    					content like'%'||#{keyword}||'%'
+			    				</when>
+			    				<when test='type=="W"'>
+			    					writer like'%'||#{keyword}||'%'
+			    				</when>
+			    			</choose>
+		    			</trim>
+		    		</foreach>
+		    	</trim>
+	    	</where>
+    		<![CDATA[ 
+    		order by bno desc) 
     		where rownum <= (#{pageNum} * #{amount}) )
 		where rn > ((#{pageNum}-1) * #{amount}) 
 		]]>
@@ -47,6 +67,33 @@
 	
 	<select id="count" resultType="long">
 		select count(*) from tbl_board
+		<where>
+		    	<trim prefixOverrides="OR">
+		    		<foreach item='type' collection="typeArr">
+		    			<trim prefix="OR">
+			    			<choose>
+			    				<when test='type=="T"'>
+			    					title like'%'||#{keyword}||'%'
+			    				</when>
+			    				<when test='type=="C"'>
+			    					content like'%'||#{keyword}||'%'
+			    				</when>
+			    				<when test='type=="W"'>
+			    					writer like'%'||#{keyword}||'%'
+			    				</when>
+			    			</choose>
+		    			</trim>
+		    		</foreach>
+		    	</trim>
+	    	</where>
+	</select>
+	
+	<select id="description" resultType="org.zerock.domain.BoardVO">
+		select regdate, count(*) content from tbl_board GROUP BY regdate order by regdate
+	</select>
+	
+	<select id="countDistinct" resultType="long">
+		select (select count(*) from tbl_board) - (select count(*) from (select DISTINCT title, content, writer from tbl_board)) du from dual
 	</select>
 	
 	<select id="count1" resultType="long">

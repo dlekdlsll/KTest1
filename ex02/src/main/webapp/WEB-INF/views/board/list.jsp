@@ -16,7 +16,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            	게시글 목록보기 &nbsp;&nbsp;<a href="/board/register">글 등록</a>&nbsp;&nbsp;총 글 갯수 &#40;${pageMaker.total }&#41; &nbsp;&nbsp; <a href="/board/rank?pageNum=${pageMaker.cri.pageNum }&amount=${pageMaker.cri.amount}">랭킹</a>
+                            	게시글 목록보기 &nbsp;&nbsp;&nbsp;&nbsp;
+                            	|<a href="/board/register">&nbsp;&nbsp;글 등록</a>&nbsp;&nbsp;
+                            	|&nbsp;&nbsp;총 글 갯수 &#40;${pageMaker.total }&#41; &nbsp;&nbsp; 
+                            	|<a href="/board/rank?pageNum=${pageMaker.cri.pageNum }&amount=${pageMaker.cri.amount}">&nbsp;&nbsp;랭킹</a>&nbsp;&nbsp;
+                            	|<a href="/board/description?pageNum=${pageMaker.cri.pageNum }&amount=${pageMaker.cri.amount}">&nbsp;&nbsp;통계</a>&nbsp;&nbsp;
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

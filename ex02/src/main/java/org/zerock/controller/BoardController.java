@@ -28,7 +28,7 @@ public class BoardController {
 		log.info("list 요청");
 		model.addAttribute("list", service.getList(cri));
 //		model.addAttribute("count", service.count());
-		model.addAttribute("pageMaker", new PageDTO(cri, service.count()));
+		model.addAttribute("pageMaker", new PageDTO(cri, service.count(cri)));
 	}
 	
 	// 등록하기 위한 화면요청
@@ -74,14 +74,21 @@ public class BoardController {
 	
 	// /board/count -> /board/count.jsp(총 글 갯수를 보내준다)
 	@GetMapping("/count")
-	public void count(Model model) {
+	public void count(Model model, Criteria cri) {
 		log.info("count 요청");
-		model.addAttribute("count",service.count());
+		model.addAttribute("count",service.count(cri));
 	}
 	
 	// 랭킹
 	@GetMapping("/rank")
 	public void rank(Criteria cri, Model model) {
 		model.addAttribute("rank",service.rank());
+	}
+	
+	// 통계
+	@GetMapping("/description")
+	public void description(Criteria cri, Model model) {
+		model.addAttribute("countDistinct", service.countDistinct());
+		model.addAttribute("description", service.description());
 	}
 }

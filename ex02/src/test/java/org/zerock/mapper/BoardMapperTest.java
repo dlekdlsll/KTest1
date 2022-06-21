@@ -31,12 +31,18 @@ public class BoardMapperTest {
 	@Test
 	public void testGetListWithPaging() {
 		Criteria cri = new Criteria();
+		cri.setType("TW");
+		cri.setKeyword("테스트");
 		mapper.getListWithPaging(cri).forEach(vo -> log.info(vo));
 	}
 	
 	@Test
 	public void testCount() {
-		log.info("글 개수는 : " + mapper.count());
+		Criteria cri = new Criteria();
+		log.info("글 개수는 : " + mapper.count(cri));
+		cri.setType("TW");
+		cri.setKeyword("테스트");
+		log.info("글 개수는 : " + mapper.count(cri));
 	}
 	
 	@Test

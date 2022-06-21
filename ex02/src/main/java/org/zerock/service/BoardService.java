@@ -23,8 +23,15 @@ public interface BoardService {
 	public List<BoardVO> getList(Criteria cri);
 	
 	// 글 갯수 보기
-	public Long count();
+	public Long count(Criteria cri);
+	
+	// 중복된 글 갯수 보기
+	public Long countDistinct();
 	
 	// 작성자 랭킹 보기
 	public List<CountVO> rank();
+	
+	// 통계
+	public List<BoardVO> description();
+	
 }

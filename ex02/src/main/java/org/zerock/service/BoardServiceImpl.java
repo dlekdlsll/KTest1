@@ -43,13 +43,23 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Long count() {
-		return mapper.count();
+	public Long count(Criteria cri) {
+		return mapper.count(cri);
 	}
 
 	@Override
 	public List<CountVO> rank() {
 		return mapper.rank();
+	}
+
+	@Override
+	public Long countDistinct() {
+		return mapper.countDistinct();
+	}
+
+	@Override
+	public List<BoardVO> description() {
+		return mapper.description();
 	}
 
 }
